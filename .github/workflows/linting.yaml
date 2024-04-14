@@ -42,16 +42,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check for Trailing Whitespace in goal_src
-        run: python ./scripts/ci/lint-trailing-whitespace.py
+        run: python3 ./scripts/ci/lint-trailing-whitespace.py
 
       - name: Check for Unresolved Conflicts
-        run: python ./scripts/gsrc/check-for-conflicts.py
+        run: python3 ./scripts/gsrc/check-for-conflicts.py
 
       - name: Check for Incorrect Asserts
-        run: python ./scripts/ci/check-for-asserts.py
+        run: python3 ./scripts/ci/check-for-asserts.py
 
       - name: Check for Invalid Translation Characters
-        run: python ./scripts/ci/lint-characters.py
+        run: python3 ./scripts/ci/lint-characters.py
 
   optional-checks:
     name: 📝 Optional Checks
@@ -61,7 +61,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install Python Dependencies
+      - name: Install python3 Dependencies
         run: pip install unidiff colorama
 
       - name: Check for Removed goal_src/ Code
@@ -69,4 +69,4 @@ jobs:
         run: |
           git fetch origin
           git diff origin/master > lint-changes.diff
-          python ./scripts/ci/lint-gsrc-removals.py
+          python3 ./scripts/ci/lint-gsrc-removals.py
